@@ -1,0 +1,61 @@
+.element {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 20px;
+}
+
+@media screen and (max-width: 495px){
+        .element {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .element__description {
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+}
+
+.element__image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2f3f4;
+}
+
+.element__image-link {
+    width: 65%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.card__categorie {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    color: #525252;
+    font-size: 14px;
+}
+
+.card__name-books {
+    font-weight: 500;
+    font-size: 22px;
+}
+
+.card__author-books {
+    text-decoration: underline;
+    border-bottom: 1px;
+    color: #525252;
+    margin: 0 ;
+    font-size: 13px;
+}
+
+.card__content {
+    width: 90%;
+    margin: 30px 50px 0 0;
+    border: 1.5px solid #c0c0c0;
+    border-radius: 2px;
+    padding: 13px;
+    font-size: 13px;
+    margin-bottom: 18px;
+}
