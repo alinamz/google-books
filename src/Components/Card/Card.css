@@ -6,6 +6,10 @@
     margin-bottom: 20px;
 }
 
+.card__img-none {
+    min-height: 234px;
+}
+
 .card {
     left: 70px;
     width: 100%;
@@ -15,6 +19,7 @@
     top: 70px;
     border-radius: 10px;
     background-color: 	#E8E8E8;
+    text-decoration: none;
 }
 
 .card__name {
@@ -23,6 +28,12 @@
     margin: 10px 20px 5px 20px;
     word-break: break-all;
     font-size: 18px;
+    overflow: hidden;
+    padding: 0;
+    text-align: left;
+    color: black;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .card__info {
@@ -35,12 +46,22 @@
     color: #525252;
     margin: 0 0 0 20px;
     font-size: 13px;
+    overflow: hidden;
+    padding: 0;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .card__author {
     color: #525252;
     margin: 0 0 10px 20px;
     font-size: 15px;
+    overflow: hidden;
+    padding: 0;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 /* @media screen and (max-width: 768px) {

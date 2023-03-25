@@ -1,19 +1,30 @@
-import utils from '../../utils/const';
-import Card from '../Card/Card.js'
+import { useSelector } from 'react-redux';
+import Card from '../Card/Card.js';
+import Preloader from '../Preloader/Preloader';
+import { useDispatch } from 'react-redux';
+import { getMoreBooks } from '../../features/books/booksSlice.js';
 
-export default function CardList() {
+export default function CardList({ setCard }) {
+    const dispatch = useDispatch();
+    const { list, filtered, isLoading, totalItems } = useSelector(({ books }) => books);
+
+    function handleLoadMoreBooks() {
+        dispatch(getMoreBooks({}));
+    }
 
     return (
-        <div className="container">
-            <p className='container__title'>Всего найдено {utils.length}</p>
-            <div className='cards'>
+        isLoading ? <Preloader></Preloader> :
+            (<div className="container">
+                <p className='container__title'>Всего найдено {totalItems}</p>
+                <div className='cards'>
+                    {filtered?.map((card) => {
+                            return <Card setCard={setCard} card={card} key={card.id} />
+                        })
+                    }
+                </div>
                 {
-                    utils.map((card) => {
-                        return <Card card={card} key={card.id} />
-                    })
+                    (list.length === totalItems) ? '' : <button onClick={handleLoadMoreBooks} className='container__btn'>Load more</button>
                 }
-            </div>
-            <button className='container__btn'>Load more</button>
-        </div>
+            </div>)
     )
 }

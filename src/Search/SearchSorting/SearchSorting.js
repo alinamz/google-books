@@ -1,10 +1,10 @@
 import React from 'react';
 import Select from 'react-select';
+import { useDispatch } from 'react-redux';
+import { sortBooks } from '../../features/books/booksSlice';
+import { useSelector } from 'react-redux';
 
-const options = [
-    { value: 'relevance', label: 'relevance' },
-    { value: 'newest', label: 'newest' }
-]
+
 
 export const customStyles = {
     control: (provided, state) => ({
@@ -36,24 +36,26 @@ export const customStyles = {
 };
 
 export function SearchSorting() {
-    const [currentSorting, setCurrentSorting] = React.useState('revelance');
+    const dispatch = useDispatch()
 
-    const getValue = () => {
-        return currentSorting ? options.find(c => c.value === currentSorting) : ''
+    const { sort } = useSelector(({ books }) => books);
+
+    const handleSortChange = (sorting) => {
+        dispatch(sortBooks(sorting))
     }
 
-    const onChange = (newValue) => {
-        setCurrentSorting(newValue.value)
-    }
+    const getCurrentSort = () => {
+        return sort.all.find(c => c.value === sort.value);
+    };
 
     return (
         <>
             <p className='search__categoties-text'>Sorting by</p>
             <Select
                 styles={customStyles}
-                onChange={onChange}
-                value={getValue()}
-                options={options}
+                onChange={handleSortChange}
+                value={getCurrentSort()}
+                options={sort.all}
                 className='search__categoties-input' />
         </>
     )
