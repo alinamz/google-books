@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "axios";
 
+const FETCH_MAX_SIZE = 30;
+
 const getDateYear = (dateStr) => {
     if (dateStr == null || dateStr === '')
         return null;
@@ -43,7 +45,7 @@ export const getBooks = createAsyncThunk(
             return { "items": [] };
 
         try {
-            const response = await axios(`https://www.googleapis.com/books/v1/volumes?q=${value.search}&maxResults=30`);
+            const response = await axios(`https://www.googleapis.com/books/v1/volumes?q=${value.search}&maxResults=${FETCH_MAX_SIZE}`);
             return mapBooksSearchResponse(response);
         } catch (err) {
             console.log(err);
@@ -56,10 +58,10 @@ export const getMoreBooks = createAsyncThunk(
     async (_, thunkAPI) => {
         const currentState = thunkAPI.getState().books;
         const searchTerm = currentState.searchTerm;
-        const startIndex = currentState.list.length * 2;
+        const startIndex = currentState.list.length;
 
         try {
-            const response = await axios(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&startIndex=${startIndex}&maxResults=30`)
+            const response = await axios(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&startIndex=${startIndex}&maxResults=${FETCH_MAX_SIZE}`)
             return mapBooksSearchResponse(response);
         } catch (err) {
             console.log(err);

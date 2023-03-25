@@ -16,16 +16,16 @@ export default function Search({ setSearch, search }) {
         if (isMain === true) {
             navigate("/");
         } else {
-        setSearch(value);
+            setSearch(value);
         }
     }
 
     const handleSearchBooks = (event) => {
-            event.preventDefault();
-            if (search !== '') {
-                dispath(setSearchTerm(search));
-                dispath(getBooks({ 'search': search.replace(/ /ig, '+') }));
-            }
+        event.preventDefault();
+        if (search !== '') {
+            dispath(setSearchTerm(search));
+            dispath(getBooks({ 'search': search.replace(/ /ig, '+') }));
+        }
     }
 
     return (

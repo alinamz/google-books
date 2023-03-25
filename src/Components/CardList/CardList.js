@@ -15,11 +15,11 @@ export default function CardList({ setCard }) {
     return (
         isLoading ? <Preloader></Preloader> :
             (<div className="container">
-                <p className='container__title'>Всего найдено {totalItems}</p>
+                <p className='container__title'>Total found: {totalItems}</p>
                 <div className='cards'>
                     {filtered?.map((card) => {
-                            return <Card setCard={setCard} card={card} key={card.id} />
-                        })
+                        return <Card setCard={setCard} card={card} key={card.id} />
+                    })
                     }
                 </div>
                 {
